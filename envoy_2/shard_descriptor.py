@@ -35,7 +35,6 @@ class LocalMRIDataset(ShardDataset):
 
     def read_video(self, vid_paths):
         video = [load_image(path) for path in vid_paths]
-        #  import pdb;pdb.set_trace()
         if self.transform:
             seed = random.randint(0, 99999)
             for i in range(len(video)):
@@ -47,7 +46,6 @@ class LocalMRIDataset(ShardDataset):
             video = torch.zeros(constants.N_FRAMES, constants.IMAGE_SIZE, constants.IMAGE_SIZE)
         else:
             video = torch.stack(video)  # T * C * H * W
-        #         video = torch.transpose(video, 0, 1) # C * T * H * W
         return video
 
     def __getitem__(self, index):
